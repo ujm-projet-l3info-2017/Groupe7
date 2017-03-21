@@ -10,13 +10,13 @@ import com.example.smail.testapp.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button bLogin,bReg;
-    ConnexionClienServer conServer ;
+    ConnexionClientServer conServer ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        conServer  = new ConnexionClienServer();
+        conServer  = new ConnexionClientServer();
 
 
 
