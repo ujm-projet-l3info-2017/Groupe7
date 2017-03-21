@@ -10,13 +10,13 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ConnexionClienServer {
+public class ConnexionClientServer {
     private Socket    ClientSocket;
     private Thread m_objectThreadClient;
     private String response;
 
 
-    public ConnexionClienServer(){
+    public ConnexionClientServer(){
         m_objectThreadClient = new Thread(new Runnable() {
             @Override
             public void run() {
