@@ -1,14 +1,16 @@
-package com.example.smail.testapp;
+package carpooling;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import java.sql.ResultSet;
+
+import com.example.smail.testapp.R;
 
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     Button bLogin, clickregist;
@@ -44,6 +46,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
        int r =0;
+        ResultSet rs;
+
         switch (v.getId()) {
             case R.id.bclickLogin:
                 String identifiant = etUsername.getText().toString();
@@ -51,7 +55,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                 if (identifiant.trim().equals("")||mdp.trim().equals("")) {
 
-                    r=1;
+                    r = 1;
                 }
                 if (r==1){
                     etUsername.setError("il faut remplir tout les champs");
@@ -61,11 +65,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                     {
                         try
                         {
-                            String query = "select *from Utilasateur where username = " + identifiant + " password = " + mdp;
-                            conexion.reqSQL(query, 's');
+                            String query = "select * from Utilasateur where username = " + identifiant + " password = " + mdp;
+                            rs = conexion.reqSelect(query);
 
                             try {
-                                if (conexion.rs.next())
+                                if (rs.next())
                                 {
                                     // startActivity(new Intent(this,PageAccueil.class));
                                 }

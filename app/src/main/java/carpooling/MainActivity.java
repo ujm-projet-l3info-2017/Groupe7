@@ -1,10 +1,12 @@
-package com.example.smail.testapp;
+package carpooling;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.smail.testapp.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button bLogin,bReg;
@@ -24,8 +26,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         bReg.setOnClickListener(this);
         bLogin.setOnClickListener(this);
-
-
     }
 
 

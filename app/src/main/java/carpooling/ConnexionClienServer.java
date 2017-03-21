@@ -1,27 +1,19 @@
-package com.example.smail.testapp;
-
+package carpooling;
 
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-
-/**
- * Created by smail on 05/03/17.
- */
-
 public class ConnexionClienServer {
-    Socket    ClientSocket;
-    Thread m_objectThreadClient;
-    String response;
+    private Socket    ClientSocket;
+    private Thread m_objectThreadClient;
+    private String response;
 
 
     public ConnexionClienServer(){
@@ -51,9 +43,7 @@ public class ConnexionClienServer {
         });
         m_objectThreadClient.start();
 
-    };
-
-
+    }
 }
 
 
