@@ -8,12 +8,15 @@ import android.widget.EditText;
 
 import com.example.smail.testapp.R;
 
-public class Register extends AppCompatActivity implements View.OnClickListener{
+public class Register extends AppCompatActivity implements View.OnClickListener
+{
     Button bRegister;
-    EditText etName,etUsername,etAge,etPassword,etErreur;
-     ConnexionDB conexion;
+    EditText etName, etUsername, etAge, etPassword, etErreur;
+    ConnexionDB conexion;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         /*try {
@@ -24,12 +27,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
             e.printStackTrace();
         }
 */
-        etName =(EditText)findViewById(R.id.etName);
-        etUsername =(EditText)findViewById(R.id.etUsername);
-        etAge=(EditText)findViewById(R.id.etAge);
-        etPassword=(EditText)findViewById(R.id.etPassword);
-       // etErreur = (EditText)findViewById(R.id.erreur);
-        bRegister = (Button)findViewById(R.id.bRegister);
+        etName = (EditText) findViewById(R.id.etName);
+        etUsername = (EditText) findViewById(R.id.etUsername);
+        etAge = (EditText) findViewById(R.id.etAge);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        // etErreur = (EditText)findViewById(R.id.erreur);
+        bRegister = (Button) findViewById(R.id.bRegister);
         bRegister.setOnClickListener(this);
 
     }
@@ -37,25 +40,27 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
     @Override
 
 
-
     public void onClick(View v)
-    { int r =0;
+    {
+        int r = 0;
         switch (v.getId())
         {
             case R.id.bRegister:
-               int agee = 0;
+                int agee = 0;
                 String nom = etName.getText().toString();
                 String prenom = etUsername.getText().toString();
                 String mdp = etPassword.getText().toString();
-           //   agee =  Integer.parseInt(etAge.getText().toString());
+                //   agee =  Integer.parseInt(etAge.getText().toString());
 
-              if(nom.trim().equals("")||prenom.trim().equals("")||mdp.trim().equals("")){
+                if (nom.trim().equals("") || prenom.trim().equals("") || mdp.trim().equals(""))
+                {
 
-                  r=1;
-              }
-              if (r==1){
-                  etName.setError("iL faut remplir tout les champs");
-              }
+                    r = 1;
+                }
+                if (r == 1)
+                {
+                    etName.setError("iL faut remplir tout les champs");
+                }
 /*
 
            else     {
@@ -74,12 +79,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         }
 
 
-
     }
-
-
-
-
 
 
 }
