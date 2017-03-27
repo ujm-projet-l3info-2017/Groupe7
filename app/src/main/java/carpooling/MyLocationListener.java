@@ -11,34 +11,26 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-public class MyLocationListener implements LocationListener
+class MyLocationListener implements LocationListener
 {
 
     private static final long DISTANCE_CHANGE_FOR_UPDATES = 0; // 10 meters
     private static final long MIN_TIME_BW_UPDATES = 0;  // The min time beetwen updates (milliseconds)
-
-
-    private static MyLocationListener instance = null;
-
     private LocationManager locationManager;
     private Location location;
     private boolean locationServiceAvailable;
+    private Context context;
+    private Activity activity;
 
 
     private boolean gpsEnabled()
     {
-        if (locationManager != null)
-            return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        else
-            return false;
+        return ((locationManager != null) && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER));
     }
 
     private boolean netEnabled()
     {
-        if (locationManager != null)
-            return locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        else
-            return false;
+        return (locationManager != null && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER));
     }
 
     public Location getLocation()
@@ -51,30 +43,21 @@ public class MyLocationListener implements LocationListener
         return locationServiceAvailable;
     }
 
-
-    public static MyLocationListener getLocationManager(Context context, Activity act)
+    MyLocationListener(Context context, Activity act)
     {
-        if (instance == null)
-        {
-            instance = new MyLocationListener(context, act);
-        }
-        return instance;
-    }
-
-
-    private MyLocationListener(Context context, Activity act)
-    {
-        initLocationListener(context, act);
+        this.context = context;
+        activity = act;
+        initLocationListener();
         Log.d("d_GPS", "MyLocationListener created.");
     }
 
-    private void initLocationListener(Context context, Activity act)
+    private void initLocationListener()
     {
 
         if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
         {
-            ActivityCompat.requestPermissions(act, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(activity, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
             //return  ;
             //TODO check if not allowed
         }
@@ -121,7 +104,6 @@ public class MyLocationListener implements LocationListener
                     }
                 }
             }
-
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -130,13 +112,11 @@ public class MyLocationListener implements LocationListener
 
     }
 
-
     @Override
-    public void onLocationChanged(Location location)
+    public void onLocationChanged(Location loc)
     {
-
-
-        Log.d("d_GPS", "Location changed : (" + location.getLatitude() + "," + location.getLongitude() + ")");
+        location = loc;
+        Log.d("d_GPS", "  locationChanged =  (" + loc.getLatitude() + ", " + loc.getLongitude() + " )");
     }
 
     @Override

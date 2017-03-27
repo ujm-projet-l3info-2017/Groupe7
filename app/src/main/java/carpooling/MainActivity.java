@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 {
     Button bLogin, bReg;
     ConnexionClientServer conServer;
-    MyLocationListener locationService;
+    MyLocationListener locationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,21 +21,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.INTERNET}, 1);
         conServer = new ConnexionClientServer();
-
-
         bReg = (Button) findViewById(R.id.bRegisterBegin);
         bLogin = (Button) findViewById(R.id.bLoginBegin);
-
-
         bReg.setOnClickListener(this);
         bLogin.setOnClickListener(this);
 
-        locationService = MyLocationListener.getLocationManager(this.getApplicationContext(), this);
-
-
-
+        locationListener = new MyLocationListener(this.getApplicationContext(), this);
     }
 
 
@@ -44,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         switch (v.getId())
         {
-
             case R.id.bLoginBegin:
                 startActivity(new Intent(this, Login.class));
                 break;
@@ -52,9 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bRegisterBegin:
                 startActivity(new Intent(this, Register.class));
                 break;
-
         }
     }
-
-
 }
