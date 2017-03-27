@@ -1,5 +1,6 @@
 package carpooling;
 
+import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -43,33 +44,35 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
         switch (v.getId())
         {
             case R.id.bRegister:
-               int agee = 0;
+               int agee = -1;
                 String nom = etName.getText().toString();
                 String prenom = etUsername.getText().toString();
                 String mdp = etPassword.getText().toString();
-           //   agee =  Integer.parseInt(etAge.getText().toString());
+                agee =  Integer.parseInt(etAge.getText().toString());
 
-              if(nom.trim().equals("")||prenom.trim().equals("")||mdp.trim().equals("")){
+              if(nom.trim().equals("")){
 
-                  r=1;
-              }
-              if (r==1){
                   etName.setError("iL faut remplir tout les champs");
               }
-/*
 
-           else     {
+             else if (mdp.trim().equals("")) {
+                 etPassword.setError("Il faut remplir ce champ ");
+             }
+             else if (prenom.trim().equals("")) {
+                 etUsername.setError("Il faut remplir ce champ ");
+             }
+             else     {
                       try {
                              String query = "INSERT into Utilisateur('name, 'username','password','age') VALUES(nom,prenom,mdp,agee)";
-                              conexion.reqSQL(query, 'm');
-                               System.out.print(" reussi");
+                              conexion.reqModif(query);
+                              System.out.print(" reussi");
 
                          } catch (SQLException e) {
                           e.printStackTrace();
                         }
 
                 }
-                */
+
                 break;
         }
 
