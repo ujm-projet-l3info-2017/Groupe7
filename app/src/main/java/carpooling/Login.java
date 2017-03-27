@@ -6,10 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import java.sql.ResultSet;
 
 import com.example.smail.testapp.R;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
@@ -53,15 +53,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 String identifiant = etUsername.getText().toString();
                 String mdp = etPassword.getText().toString();
 
-                if (identifiant.trim().equals("")|| (mdp.trim().equals("")) ){
-                    etUsername.setError("il faut remplir ce champ");
+                if (identifiant.trim().equals("")||mdp.trim().equals("")) {
+
+                    r = 1;
+                }
+                if (r==1){
+                    etUsername.setError("il faut remplir tout les champs");
 
                 }
-            /*  new modif  else if (mdp.trim().equals("")){
-                    etPassword.setError("Il faut remplir ce champ ");
-
-                }
-              */  else
+                else
                     {
                         try
                         {
@@ -76,7 +76,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                                 }catch (SQLException e)
                                {
-                                  /* new modif etUsername.setError("Compte inexistant");*/
+                                    e.printStackTrace();
+                                   System.out.print("Compte inexistant");
                                }
                         } catch (SQLException e)
                         {
