@@ -10,7 +10,7 @@ import com.example.smail.testapp.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
-    Button bLogin, bReg;
+    Button bLogin, bReg, bMap;
     ConnexionClientServer conServer;
     MyLocationListener locationListener;
 
@@ -24,8 +24,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         conServer = new ConnexionClientServer();
         bReg = (Button) findViewById(R.id.bRegisterBegin);
         bLogin = (Button) findViewById(R.id.bLoginBegin);
+        bMap = (Button) findViewById(R.id.bMap);
         bReg.setOnClickListener(this);
         bLogin.setOnClickListener(this);
+        bMap.setOnClickListener(this);
 
         locationListener = new MyLocationListener(this.getApplicationContext(), this);
     }
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.bMap:
                 startActivity(new Intent(this, MapActivity.class));
+                break;
         }
     }
 }
