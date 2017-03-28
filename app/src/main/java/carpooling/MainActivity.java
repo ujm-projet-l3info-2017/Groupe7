@@ -43,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.bRegisterBegin:
                 startActivity(new Intent(this, Register.class));
                 break;
+
+            case R.id.bMap:
+                startActivity(new Intent(this, MapActivity.class));
         }
     }
 }
