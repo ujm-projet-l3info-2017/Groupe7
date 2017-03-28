@@ -53,7 +53,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
 
                   r=1;
               }
-              if (r==1){
+                if (r == 1)
+                {
                   etName.setError("iL faut remplir tout les champs");
               }
 /*

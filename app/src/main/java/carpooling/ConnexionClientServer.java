@@ -1,5 +1,7 @@
 package carpooling;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -29,20 +31,21 @@ public class ConnexionClientServer
 
                     OutputStream oss = new ObjectOutputStream(ClientSocket.getOutputStream());
                     PrintWriter writer = new PrintWriter(oss);
-                    writer.print("Hey server");
+                    writer.print("Init com. server");
                     writer.flush();
 
                     InputStream ois = new ObjectInputStream(ClientSocket.getInputStream());
                     BufferedReader reader = new BufferedReader(new InputStreamReader(ois));
                     response = reader.readLine();
-                    System.out.println("le messages reçu" + response);
+                    Log.d("d_SERVER", "message recu = " + response);
+
 
                     ClientSocket.close();
 
                 } catch (Exception e)
                 {
                     e.printStackTrace();
-                    System.out.print("erreur de conexion");
+                    Log.d("d_SERVER", "COM error : " + e.getMessage());
                 }
             }
         });

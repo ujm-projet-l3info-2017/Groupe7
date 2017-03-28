@@ -1,5 +1,7 @@
 package carpooling;
 
+import android.util.Log;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,12 +21,11 @@ class ConnexionDB
         try
         {
             con = DriverManager.getConnection("jdbc:mysql://161.3.108.33:3306/db_proj", "tm06288p", "adoula23");
-            System.out.println("Connexion reussi");
+            Log.d("d_DB", "CONNECTION DB success.");
         } catch (SQLException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-            System.out.println("connection failed");
+            Log.d("d_DB", "CONNECTION DB failed.");
         }
 
 
@@ -47,6 +48,7 @@ class ConnexionDB
         } catch (SQLException e)
         {
             e.printStackTrace();
+            Log.d("d_DB", "ReqModif(query) SQL exception : " + e.getMessage());
         }
 
         return -1;
