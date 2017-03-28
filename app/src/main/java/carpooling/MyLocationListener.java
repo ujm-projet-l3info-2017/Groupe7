@@ -73,24 +73,12 @@ class MyLocationListener implements LocationListener
             {
                 this.locationServiceAvailable = true;
 
-                if (netEnabled())
-                {
-                    Log.d("d_GPS", "net enabled !");
-                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-                            MIN_TIME_BW_UPDATES,
-                            DISTANCE_CHANGE_FOR_UPDATES, this);
-                    if (locationManager != null)
-                    {
-                        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                        Log.d("d_GPS", " (net) lat =  " + location.getLatitude() + " long = " + location.getLongitude());
-                    }
-                }
 
                 if (gpsEnabled())
                 {
                     if (locationManager != null)
                     {
-                        Log.d("d_GPS", "gps enabled !");
+                        Log.d("d_GPS", "gps provider selected.");
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                                 MIN_TIME_BW_UPDATES,
                                 DISTANCE_CHANGE_FOR_UPDATES, this);
@@ -101,6 +89,17 @@ class MyLocationListener implements LocationListener
                     } else
                     {
                         Log.d("d_GPS", "locationManager = null");
+                    }
+                } else
+                { // netEnabled only
+                    Log.d("d_GPS", "network provider selected.");
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            DISTANCE_CHANGE_FOR_UPDATES, this);
+                    if (locationManager != null)
+                    {
+                        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        Log.d("d_GPS", " (net) lat =  " + location.getLatitude() + " long = " + location.getLongitude());
                     }
                 }
             }
@@ -116,7 +115,7 @@ class MyLocationListener implements LocationListener
     public void onLocationChanged(Location loc)
     {
         location = loc;
-        Log.d("d_GPS", "  locationChanged =  (" + loc.getLatitude() + ", " + loc.getLongitude() + " )");
+        Log.d("d_GPS", "  locationChanged =  (" + loc.getLatitude() + ", " + loc.getLongitude() + ")");
     }
 
     @Override
