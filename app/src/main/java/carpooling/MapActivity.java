@@ -33,9 +33,7 @@ public class MapActivity extends AppCompatActivity
             }
         });
 
-        super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_map);
         WebView myWebView = (WebView) findViewById(R.id.map_view);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
