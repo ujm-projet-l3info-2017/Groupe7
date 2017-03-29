@@ -49,16 +49,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener{
                 String mdp = etPassword.getText().toString();
            //   agee =  Integer.parseInt(etAge.getText().toString());
 
-              if(nom.trim().equals("")||prenom.trim().equals("")||mdp.trim().equals("")){
-
-                  r=1;
-              }
-                if (r == 1)
+                if (nom.trim().equals("") || mdp.trim().equals(""))
                 {
                   etName.setError("iL faut remplir tout les champs");
-              }
-/*
+                }
 
+/*
            else     {
                       try {
                              String query = "INSERT into Utilisateur('name, 'username','password','age') VALUES(nom,prenom,mdp,agee)";
