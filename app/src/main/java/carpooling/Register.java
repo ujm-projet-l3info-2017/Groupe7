@@ -8,13 +8,15 @@ import android.widget.EditText;
 
 import com.example.smail.testapp.R;
 
-public class Register extends AppCompatActivity implements View.OnClickListener {
+public class Register extends AppCompatActivity implements View.OnClickListener
+{
     Button bRegister;
     EditText etName, etUsername, etAge, etPassword, etErreur;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
@@ -29,14 +31,14 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     }
 
     @Override
-
-
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         int r = 0;
-        switch (v.getId()) {
+        switch (v.getId())
+        {
             case R.id.bRegister:
                 int agee = -1;
-                String nom =  etName.getText().toString();
+                String nom = etName.getText().toString();
                 String prenom = etUsername.getText().toString();
                 String mdp = etPassword.getText().toString();
                 agee = Integer.parseInt(etAge.getText().toString());
@@ -44,26 +46,20 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 if (nom.trim().equals(""))
                 {
                     etName.setError("iL faut remplir tout les champs");
-                }
-                else if (prenom.trim().equals(""))
+                } else if (prenom.trim().equals(""))
                 {
                     etUsername.setError("il faut remplir ce champ ");
-                }
-                else if (mdp.trim().equals(""))
+                } else if (mdp.trim().equals(""))
                 {
                     etPassword.setError("il faut remplir ce champ");
-                }
-
-
-               else
+                } else
                 {
-
 
 
                 }
                 break;
 
-         }
+        }
 
     }
 
