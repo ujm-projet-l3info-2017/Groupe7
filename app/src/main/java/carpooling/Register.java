@@ -36,7 +36,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.bRegister:
                 int agee = -1;
-                String nom = etName.getText().toString();
+                String nom =  etName.getText().toString();
                 String prenom = etUsername.getText().toString();
                 String mdp = etPassword.getText().toString();
                 agee = Integer.parseInt(etAge.getText().toString());
