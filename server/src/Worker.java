@@ -131,7 +131,7 @@ public class Worker implements Runnable
         dbg.info("Received query from '" + sock.getRemoteSocketAddress() + "': " + args);
 
             /* request type */
-        type = args.get(0).toLowerCase();
+        type = args.get(0);
 
         if (type.equals(TYPE_AUTH))
         {
