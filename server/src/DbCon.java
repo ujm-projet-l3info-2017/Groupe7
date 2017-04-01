@@ -12,7 +12,7 @@ public class DbCon
     static final String user = "proj";
     static final String password = "passwd";
     private Connection con = null;
-    protected static Debug dbg;
+    private Debug dbg;
 
     public DbCon()
     {

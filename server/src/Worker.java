@@ -5,7 +5,6 @@
 import java.net.*;
 import java.io.*;
 import java.sql.*;
-import java.util.*;
 
 public class Worker implements Runnable
 {
@@ -13,7 +12,9 @@ public class Worker implements Runnable
     private DbCon db;
     private BufferedReader in = null;
     private PrintWriter out = null;
-    protected static Debug dbg;
+    private Debug dbg;
+    private String sepMarker = ":";
+    private String endMarker = "\n";
 
     public Worker(Socket sock)
     {
@@ -33,13 +34,15 @@ public class Worker implements Runnable
             prepStmt.setString(2, hash);
             prepStmt.setString(3, mail);
             prepStmt.setString(4, tel);
-            out.printf("REGISTER\r\n1"); /* REGISTER successfull */
         }
         catch (SQLException se)
         {
             dbg.error("SQLException caught: '" + se.getMessage() + "'");
-            out.printf("REGISTER\r\n0"); /* REGISTER failure */
+            send(new String[] {"REGISTER", "0"});
+            return;
         }
+
+        send(new String[] {"REGISTER", "1"});
     }
 
     public void reqAuth(String pseudo, String hash)
@@ -53,14 +56,16 @@ public class Worker implements Runnable
             prepStmt.setString(2, hash);
             ResultSet res = prepStmt.executeQuery();
 
+            res.next(); /* get to the first row */
             if (res.getInt("c") == 1)
-                out.printf("AUTH\r\n1"); /* AUTH successfull */
+                send(new String[] {"AUTH", "1"});
             else
-                out.printf("AUTH\r\n0"); /* AUTH failure */
+                send(new String[] {"AUTH", "0"});
         }
         catch (SQLException se)
         {
             dbg.error("SQLException caught: '" + se.getMessage() + "'");
+            send(new String[] {"AUTH", "0"});
         }
     }
 
@@ -68,8 +73,10 @@ public class Worker implements Runnable
     {
         try
         {
-            dbg.warning("Closing connection " + sock.getRemoteSocketAddress());
+            dbg.warning("Closing streams & connection to " + sock.getRemoteSocketAddress());
             sock.close();
+            out.close();
+            in.close();
         }
         catch(IOException ioe)
         {
@@ -77,27 +84,18 @@ public class Worker implements Runnable
         }
     }
 
-    private ArrayList<String> getReqArgs(BufferedReader buf)
+    private void send(String[] data)
     {
-        ArrayList<String> args = new ArrayList<>();
-        String line;
+        String toSend = null;
 
-        try
-        {
-            while ((line = buf.readLine()) != null)
-                args.add(line);
-        }
-        catch (IOException ioe)
-        {
-            dbg.error("IOException caught: '" + ioe.getMessage() + "'");
-        }
-
-        return args;
+        toSend = String.join(sepMarker, data);
+        toSend += endMarker;
+        out.printf("%s", toSend);
     }
 
     public void run()
     {
-        ArrayList<String> args = null;
+        Args args = null;
         String type;
 
         dbg.info("Incoming connection from '" + sock.getRemoteSocketAddress() + "'");
@@ -105,18 +103,27 @@ public class Worker implements Runnable
         try
         {
             in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-            out = new PrintWriter(sock.getOutputStream());
+            out = new PrintWriter(sock.getOutputStream(), true);
         }
         catch (IOException ioe)
         {
             dbg.error("IOException caught: '" + ioe.getMessage() + "'");
         }
 
+        /* requete: champs separes par ':' marqueur de fin ='\n'
+        *  example: AUTH:login:password\n
+        */
+        args = new Args(in, ":");
+        args.getArgs();
 
-        args = getReqArgs(in);
-        dbg.info("Received query from '" + sock.getRemoteSocketAddress() + "': " + args);
-        if (args == null || args.isEmpty())
+        if (args.size() == 0)
+        {
+            dbg.warning("Empty request");
             closeCon();
+            return;
+        }
+
+        dbg.info("Received query from '" + sock.getRemoteSocketAddress() + "': " + args);
 
             /* Request type */
         type = args.get(0).toLowerCase();
@@ -134,6 +141,10 @@ public class Worker implements Runnable
                 return;
 
             reqRegister(args.get(1), args.get(2), args.get(3), args.get(4));
+        }
+        else
+        {
+            dbg.warning("Unknown request type '" + type + "'");
         }
 
         closeCon();
