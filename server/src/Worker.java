@@ -13,8 +13,13 @@ public class Worker implements Runnable
     private BufferedReader in = null;
     private PrintWriter out = null;
     private Debug dbg;
-    private String sepMarker = ":";
-    private String endMarker = "\n";
+
+    /* defining the 'protocol' */
+    private static final String SEP_MARKER = ":";
+    private static final String END_MARKER = "\n";
+    /* request types */
+    private static final String TYPE_AUTH = "AUTH";
+    private static final String TYPE_REGISTER = "REGISTER";
 
     public Worker(Socket sock)
     {
@@ -88,8 +93,8 @@ public class Worker implements Runnable
     {
         String toSend = null;
 
-        toSend = String.join(sepMarker, data);
-        toSend += endMarker;
+        toSend = String.join(SEP_MARKER, data);
+        toSend += END_MARKER;
         out.printf("%s", toSend);
     }
 
@@ -113,7 +118,7 @@ public class Worker implements Runnable
         /* requete: champs separes par ':' marqueur de fin ='\n'
         *  example: AUTH:login:password\n
         */
-        args = new Args(in, ":");
+        args = new Args(in, SEP_MARKER);
         args.getArgs();
 
         if (args.size() == 0)
@@ -125,17 +130,17 @@ public class Worker implements Runnable
 
         dbg.info("Received query from '" + sock.getRemoteSocketAddress() + "': " + args);
 
-            /* Request type */
+            /* request type */
         type = args.get(0).toLowerCase();
 
-        if (type.equals("auth"))
+        if (type.equals(TYPE_AUTH))
         {
             if (args.size() != 3)
                 return;
 
             reqAuth(args.get(1), args.get(2));
         }
-        else if (type.equals("register"))
+        else if (type.equals(TYPE_REGISTER))
         {
             if (args.size() != 5)
                 return;
