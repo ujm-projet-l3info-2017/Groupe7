@@ -1,0 +1,110 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:2:1-33:12
+	package
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:3:11-46
+		INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml
+		INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml
+		INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml
+		INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:5:5-66
+	android:name
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:5:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:6:5-78
+	android:name
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:6:22-76
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:7:5-78
+	android:name
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:7:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:8:5-80
+	android:name
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:8:22-78
+application
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:10:5-31:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha7] /home/yassine/.android/build-cache/acf5825e427bcab7f644f23f4e99f3fc2462c4de/output/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:design:25.2.0] /home/yassine/.android/build-cache/a6777f9bc7f4f0b8c3e1c04c12379e88232b4dfc/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:25.2.0] /home/yassine/.android/build-cache/c7c715772b2213dbcc56cf80eab1489b1283eeac/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] /home/yassine/.android/build-cache/79de1c0db64866d38cb38923e2dd13123656a35a/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:25.2.0] /home/yassine/.android/build-cache/3d2b562675fc8dba4679daba721dde285d869ef5/output/AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:transition:25.2.0] /home/yassine/.android/build-cache/a9a3b5dd379ea5618781f0e982c89e1873c1119c/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:25.2.0] /home/yassine/.android/build-cache/87e7155a72d1796588d0a9fb1ee6cfdc7f1c5379/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.2.0] /home/yassine/.android/build-cache/96fe18bf0d0475532c10c51b18549924dc64cfcf/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.2.0] /home/yassine/.android/build-cache/cea1c54e2952696d05a089cd840192501666f40b/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.2.0] /home/yassine/.android/build-cache/ca4ac6ffb07372bdec732e5ecaeb15ddda59b5ac/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.2.0] /home/yassine/.android/build-cache/2c41aaa131b2c17bfe14248a1b80d9f794982ec3/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.2.0] /home/yassine/.android/build-cache/c762d7f4c28903645781f64b98c75d080d531d51/output/AndroidManifest.xml:25:5-20
+	android:label
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:13:9-41
+	android:supportsRtl
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:15:9-35
+	android:roundIcon
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:14:9-54
+	android:allowBackup
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:11:9-35
+	android:icon
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:12:9-43
+	android:theme
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:16:9-40
+activity#carpooling.MainActivity
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:17:9-23:20
+	android:name
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:17:19-57
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:18:13-22:29
+action#android.intent.action.MAIN
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:19:17-68
+	android:name
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:19:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:21:17-76
+	android:name
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:21:27-74
+activity#carpooling.Login
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:24:9-52
+	android:name
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:24:19-50
+activity#carpooling.Register
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:25:9-55
+	android:name
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:25:19-53
+activity#carpooling.MapActivity
+ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:26:9-30:20
+	android:label
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:28:13-55
+	android:theme
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:29:13-56
+	android:name
+		ADDED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml:27:13-50
+uses-sdk
+INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support.constraint:constraint-layout:1.0.0-alpha7] /home/yassine/.android/build-cache/acf5825e427bcab7f644f23f4e99f3fc2462c4de/output/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:design:25.2.0] /home/yassine/.android/build-cache/a6777f9bc7f4f0b8c3e1c04c12379e88232b4dfc/output/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.2.0] /home/yassine/.android/build-cache/c7c715772b2213dbcc56cf80eab1489b1283eeac/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] /home/yassine/.android/build-cache/79de1c0db64866d38cb38923e2dd13123656a35a/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.2.0] /home/yassine/.android/build-cache/3d2b562675fc8dba4679daba721dde285d869ef5/output/AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:recyclerview-v7:25.2.0] /home/yassine/.android/build-cache/00a6b6455aeae11bc340acabb28f242835c3a845/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.2.0] /home/yassine/.android/build-cache/a9a3b5dd379ea5618781f0e982c89e1873c1119c/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.2.0] /home/yassine/.android/build-cache/87e7155a72d1796588d0a9fb1ee6cfdc7f1c5379/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.2.0] /home/yassine/.android/build-cache/96fe18bf0d0475532c10c51b18549924dc64cfcf/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.2.0] /home/yassine/.android/build-cache/cea1c54e2952696d05a089cd840192501666f40b/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.2.0] /home/yassine/.android/build-cache/ca4ac6ffb07372bdec732e5ecaeb15ddda59b5ac/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.2.0] /home/yassine/.android/build-cache/2c41aaa131b2c17bfe14248a1b80d9f794982ec3/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.2.0] /home/yassine/.android/build-cache/c762d7f4c28903645781f64b98c75d080d531d51/output/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.2.0] /home/yassine/.android/build-cache/a6777f9bc7f4f0b8c3e1c04c12379e88232b4dfc/output/AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml
+		INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml
+		INJECTED from /home/yassine/documents/other/fac/s6/gestion_projet/proj/CarPooling/app/src/main/AndroidManifest.xml
