@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/server_jar</output-path>
     <root id="archive" name="server.jar">
       <element id="module-output" name="server" />
-      <element id="extracted-dir" path="$USER_HOME$/data/mysql-connector-java-5.1.41-bin.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/lib/mysql-connector-java-5.1.41-bin.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
