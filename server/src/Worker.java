@@ -20,6 +20,7 @@ public class Worker implements Runnable
     /* request types */
     private static final String TYPE_AUTH = "AUTH";
     private static final String TYPE_REGISTER = "REGISTER";
+    private static final String TYPE_UNKNOWN = "TYPE_UNKNOWN";
 
     public Worker(Socket sock)
     {
@@ -30,7 +31,15 @@ public class Worker implements Runnable
 
     public void reqRegister(String pseudo, String hash, String mail, String tel)
     {
-        /* TODO: check values before insert */
+        String mailRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+
+        /* always check input */
+        if (pseudo.length() > 32 || hash.length() != 64 || tel.length() != 10 || !mail.matches(mailRegex))
+        {
+            send(new String[] {"REGISTER", "0"});
+            return;
+        }
+
         try
         {
             PreparedStatement prepStmt = db.getCon()
@@ -150,6 +159,7 @@ public class Worker implements Runnable
         else
         {
             dbg.warning("Unknown request type '" + type + "'");
+            send(new String[]{"ERROR", TYPE_UNKNOWN});
         }
 
         closeCon();
