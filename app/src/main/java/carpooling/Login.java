@@ -9,16 +9,16 @@ import android.widget.EditText;
 
 import com.example.smail.testapp.R;
 
-public class Login extends AppCompatActivity implements View.OnClickListener {
+public class Login extends AppCompatActivity implements View.OnClickListener
+{
     Button bLogin, clickregist;
     EditText etUsername, etPassword;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         etUsername = (EditText) findViewById(R.id.etUsername);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -28,38 +28,29 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         bLogin.setOnClickListener(this);
         clickregist.setOnClickListener(this);
-
-
     }
 
-
     @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
             case R.id.bclickLogin:
-                String identifiant = etUsername.getText().toString();
+                String pseudo = etUsername.getText().toString();
                 String mdp = etPassword.getText().toString();
 
-                if (identifiant.trim().equals(""))
+                if (pseudo.isEmpty())
                 {
-                    etUsername.setError("il faut remplir ce champ");
-
+                    etUsername.setError("This field is required");
                 }
-                else if(mdp.trim().equals("")){
-                    etPassword.setError("il faut remplir ce champ");
-                }
-                else
+                if (mdp.isEmpty())
                 {
-
-
-
+                    etPassword.setError("This field is required");
                 }
-
-                 break;
+                break;
 
             case R.id.clickRegist:
-                startActivity(new Intent(this,Register.class));
+                startActivity(new Intent(this, Register.class));
                 break;
         }
     }
