@@ -3,15 +3,17 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/leaflet.css"/>
+    <link rel="stylesheet" href="css/leaflet-routing-machine.css"/>
     <link rel="stylesheet" href="css/carpooling.css"/>
 </head>
 <body>
 
 <div id="mapid"></div>
-<script src="script/carpooling.js"></script>
 <script src="script/leaflet.js"></script>
-<script>
+<script src="script/leaflet-routing-machine.js"></script>
+<script src="script/carpooling.js"></script>
 
+<script>
     var mymap = L.map('mapid').setView([45.422852, 4.425267], 13);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoia2hhbWVkcyIsImEiOiJjajB0Y3lwcDYwMDFtMndtZHMxMDY5aWVvIn0.hYqFxgXB5Lj-tX0IOF43PQ', {
@@ -23,24 +25,20 @@
     }).addTo(mymap);
 
 
-    markPosition(mymap,
-    L.marker([45.422852, 4.425267]).addTo(mymap)
-        .bindPopup("<b>Vous êtes ici !</b>").openPopup();
-
+       L.Routing.control({
+        waypoints: [L.latLng(57.74, 11.94), L.latLng(57.6792, 11.949)],
+        routeWhileDragging: true
+        }).addTo(mymap);
 
     mymap.locate({setView: true, maxZoom: 16});
 
     var popup = L.popup();
 
-
+    markLocation(45.422852,4.425267, "Vous êtes ici");
     mymap.on('click', onMapClick);
-    map.on('locationerror', onLocationError);
-
-
+    mymap.on('locationerror', onLocationError);
 
 </script>
-
 </body>
-
 </html>
 
