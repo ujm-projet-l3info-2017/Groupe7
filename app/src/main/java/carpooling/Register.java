@@ -2,6 +2,7 @@ package carpooling;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +12,7 @@ import com.example.smail.testapp.R;
 public class Register extends AppCompatActivity implements View.OnClickListener
 {
     Button bRegister;
-    EditText etName, etUsername, etAge, etPassword, etErreur;
+    EditText  etUsername, etMail, etPassword, etTelephone;
 
 
     @Override
@@ -20,11 +21,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        etName = (EditText) findViewById(R.id.etName);
+       // etName = (EditText) findViewById(R.id.etName);
         etUsername = (EditText) findViewById(R.id.etUsername);
-        etAge = (EditText) findViewById(R.id.etAge);
         etPassword = (EditText) findViewById(R.id.etPassword);
-        // etErreur = (EditText)findViewById(R.id.erreur);
+        etMail= (EditText) findViewById(R.id.etMail);
+        etTelephone = (EditText) findViewById(R.id.etTel);
+
         bRegister = (Button) findViewById(R.id.bRegister);
         bRegister.setOnClickListener(this);
 
@@ -37,27 +39,68 @@ public class Register extends AppCompatActivity implements View.OnClickListener
         switch (v.getId())
         {
             case R.id.bRegister:
-                int agee = -1;
-                String nom = etName.getText().toString();
-                String prenom = etUsername.getText().toString();
+
+                String pseudo= etUsername.getText().toString();
                 String mdp = etPassword.getText().toString();
-                agee = Integer.parseInt(etAge.getText().toString());
+                String mail = etMail.getText().toString();
+                String telephone = etTelephone.getText().toString();
+                String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-                if (nom.trim().equals(""))
+                if (pseudo.trim().equals("")|pseudo.length()<4)
                 {
-                    etName.setError("iL faut remplir tout les champs");
-                } else if (prenom.trim().equals(""))
+                    etUsername.setError("iL faut remplir ce champ : minimum 4 caractere");
+                }
+                else if (mdp.trim().equals("")||mdp.length()<4)
                 {
-                    etUsername.setError("il faut remplir ce champ ");
-                } else if (mdp.trim().equals(""))
+                    etPassword.setError("il faut remplir ce champ : minimum 4 caractere");
+                }
+                else if (mail.trim().equals(""))
                 {
-                    etPassword.setError("il faut remplir ce champ");
-                } else
-                {
+                    etMail.setError("il faut remplir ce champ");
+                }
+                else if(!mail.matches(emailPattern)){
 
+                    etMail.setError("exemple format: adel.23000@hotmail.fr");
 
                 }
+                else if(telephone.trim().equals("")||telephone.length()<10){
+
+                   etTelephone.setError("il faut remplir ce champ : 10 chiffres");
+                }
+                else
+                {     Log.d("d_Iden", pseudo);
+                      Log.d("d_Mdp", mdp);
+                      Log.d("d_Mail", mail);
+                       Log.d("d_Tel", telephone);
+                /*
+                    String [] response;
+                    ServerCon con = new ServerCon();
+                    con.send(new String[] {con.TYPE_REGISTER, pseudo, mdp,mail,telephone});
+                    response = con.receive();
+
+                    if (response.length != 2)
+                    {
+                        // TODO: error
+                    }
+                    switch(Integer.parseInt(response[1]))
+                    {
+                        case 0:
+                            etUsername.setError("Erreur Register");
+                            break;
+                        case 1:
+                             startActivity(new Intent(this, MapActivity.class));
+                            break;
+                        default:
+                            // TODO: error inconnue
+                            break;
+                    }
+
+                    con.closeCon();
+             */   }
                 break;
+
+
+
 
         }
 

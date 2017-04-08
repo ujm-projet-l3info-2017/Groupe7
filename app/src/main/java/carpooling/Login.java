@@ -67,10 +67,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener
                     switch(Integer.parseInt(response[1]))
                     {
                         case 0:
-                            // TODO: login impossible
+                            etUsername.setError("Erreur Authintification");
                             break;
                         case 1:
-                            // TODO: Login OK
+                           /*  startActivity(new Intent(this, MapActivity.class));*/
                             break;
                         default:
                             // TODO: error inconnue
