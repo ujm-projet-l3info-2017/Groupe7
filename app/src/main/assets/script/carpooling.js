@@ -1,12 +1,23 @@
-var startBtn = createButton("Position de départ");
-var destBtn = createButton('Position d\'arrivée');
+var b_addWp;
+var b_addStartWp;
 
     function onMapClick(e)
     {
-         var container = L.DomUtil.create('div'),
-                    startBtn = createButton('Position de départ', container),
-                    destBtn = createButton('Position d\'arrivée', container);
-         L.popup().setContent(container).setLatLng(e.latlng).openOn(mymap);
+        var container = L.DomUtil.create('div');
+        b_addStartWp = createButton("Départ", container);
+        b_addDestinationWp = createButton("Arrivée", container);
+
+        L.popup().setContent(container).setLatLng(e.latlng).openOn(mymap);
+
+         L.DomEvent.on(b_addStartWp, 'click', function() {
+                    control.spliceWaypoints(0, 1, e.latlng);
+                    mymap.closePopup();
+         });
+
+         L.DomEvent.on(b_addDestinationWp, 'click', function() {
+                     control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng);
+                     mymap.closePopup();
+         });
     }
 
     function onLocationError(e)
@@ -28,12 +39,5 @@ var destBtn = createButton('Position d\'arrivée');
         return btn;
     }
 
-     L.DomEvent.on(startBtn, 'click', function() {
-            control.spliceWaypoints(0, 1, e.latlng);
-            map1.closePopup();
-        });
 
-     L.DomEvent.on(destBtn, 'click', function() {
-             control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng);
-             map1.closePopup();
-         });
+
