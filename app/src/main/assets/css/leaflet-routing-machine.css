@@ -226,9 +226,9 @@
     left: 4px;
     top: 4px;
     display: block;
-    width: 26px;
-    height: 23px;
-    background-image: url('routing-icon.png');
+    width: 46px;
+    height: 43px;
+    background-image: url('images/routing-icon.png');
 }
 
 .leaflet-routing-container-hide .leaflet-routing-collapse-btn:after {
