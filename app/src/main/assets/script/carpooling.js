@@ -35,7 +35,7 @@ var b_addStartWp;
 
         btn.setAttribute('type', 'button');
         btn.innerHTML = label;
-
+		
         return btn;
     }
 
