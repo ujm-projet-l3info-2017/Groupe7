@@ -7,8 +7,10 @@
 }
 
 .leaflet-control-container .leaflet-routing-container-hide {
-    width: 32px;
-    height: 32px;
+    border:none;
+    background-color : transparent; 
+    width: 60px;
+    height: 59px;
 }
 
 .leaflet-routing-container h2 {
@@ -223,11 +225,11 @@
 
 .leaflet-routing-container-hide .leaflet-routing-collapse-btn {
     position: relative;
-    left: 4px;
-    top: 4px;
+    left: 0px;
+    top: 0px;
     display: block;
-    width: 46px;
-    height: 43px;
+    width: 60px;
+    height: 59px;
     background-image: url('images/routing-icon.png');
 }
 
