@@ -1,11 +1,13 @@
 var b_addWp;
 var b_addStartWp;
+var currentLocation;
 
     function onMapClick(e)
     {
         var container = L.DomUtil.create('div');
         b_addStartWp = createButton("Départ", container);
         b_addDestinationWp = createButton("Arrivée", container);
+
 
         L.popup().setContent(container).setLatLng(e.latlng).openOn(mymap);
 
@@ -20,8 +22,14 @@ var b_addStartWp;
          });
     }
 
+    function onLocationFound(e) {
+        currentLocation = e.latlng;
+        alert(currentLocation);
+    }
+
     function onLocationError(e)
     {
+
         alert(e.message);
     }
 
@@ -31,13 +39,21 @@ var b_addStartWp;
     }
 
     function createButton(label, container) {
-        var btn = L.DomUtil.create('button', '', container);
+        var btn = L.DomUtil.create('button', 'btnWp', container);
 
         btn.setAttribute('type', 'button');
         btn.innerHTML = label;
-		
+
         return btn;
     }
 
-
+    function handleError(e) {
+            if (e.error.status === -1) {
+              document.querySelector('#osrm-error').style.display = 'block';
+              L.DomEvent.on(document.querySelector('#osrm-error-close'), 'click', function(e) {
+                document.querySelector('#osrm-error').style.display = 'none';
+                L.DomEvent.preventDefault(e);
+              });
+            }
+     }
 
