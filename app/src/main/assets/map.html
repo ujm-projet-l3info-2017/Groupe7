@@ -25,8 +25,15 @@
         id: 'mapbox.streets'
     }).addTo(map1);
 
+
+    map1.locate({setView: true, maxZoom: 18});
+
+    map1.on('locationfound', onLocationFound);
+    map1.on('locationerror', onLocationError);
+
+
 function button(label, container) {
-    var btn = L.DomUtil.create('button', '', container);
+    var btn = L.DomUtil.create('button', 'btnWp', container);
     btn.setAttribute('type', 'button');
     btn.innerHTML = label;
     return btn;
@@ -34,11 +41,11 @@ function button(label, container) {
 
 var control = L.Routing.control({
         routeWhileDragging: true,
+        language: 'fr',
         plan: new (L.Routing.Plan.extend({
             createGeocoders: function() {
                 var container = L.Routing.Plan.prototype.createGeocoders.call(this),
                     reverseButton = button('&#8593;&#8595;', container);
-
                 L.DomEvent.on(reverseButton, 'click', function() {
                     var waypoints = this.getWaypoints();
                     this.setWaypoints(waypoints.reverse());
@@ -46,15 +53,16 @@ var control = L.Routing.control({
 
                 return container;
             }
-        }))([
-            L.latLng(45.422852, 4.425267),
-            L.latLng(45.42, 4.42)
-        ], {
-            geocoder: L.Control.Geocoder.nominatim(),
-            language: 'fr',
-            routeWhileDragging: true
-        })
+        }))(
+                [],
+                {
+                    geocoder: L.Control.Geocoder.nominatim(),
+                    language: 'fr',
+                    routeWhileDragging: true
+                }
+           )
     })
+
     .on('routingerror', function(e) {
         try {
             map1.getCenter();
