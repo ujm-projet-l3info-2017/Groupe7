@@ -42,7 +42,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
 
                 Log.d("d_Iden", pseudo);
                 Log.d("d_Mdp", mdp);
-                if (pseudo.trim().equals(""))
+
 
 
                 if (pseudo.isEmpty())
@@ -53,32 +53,39 @@ public class Login extends AppCompatActivity implements View.OnClickListener
                else if (mdp.isEmpty()) {
                         etPassword.setError("This field is required");
                     }
-                else
-                {
-                    String[] response;
-                    ServerCon con = new ServerCon();
-                    con.send(new String[] {con.TYPE_AUTH, pseudo, mdp});
-                    response = con.receive();
+                else {
 
-                    if (response.length != 2)
-                    {
-                        // TODO: error
-                    }
-                    switch(Integer.parseInt(response[1]))
-                    {
-                        case 0:
-                            etUsername.setError("Erreur Authintification");
-                            break;
-                        case 1:
+                    try {
+                        String[] response;
+                        ServerCon con = new ServerCon();
+                        con.send(new String[]{con.TYPE_AUTH, pseudo, mdp});
+                        response = con.receive();
+
+                        if (response.length != 2) {
+                            // TODO: error
+                        }
+                        switch (Integer.parseInt(response[1])) {
+                            case 0:
+                                etUsername.setError("Erreur Authintification");
+                                break;
+                            case 1:
                            /*  startActivity(new Intent(this, MapActivity.class));*/
-                            break;
-                        default:
-                            // TODO: error inconnue
-                            break;
+                                break;
+                            default:
+                                // TODO: error inconnue
+                                break;
+                        }
+
+                        con.closeCon();
+                    }catch(Exception e)
+                    {
+                        e.printStackTrace();
+                        etUsername.setError("Can not connect to server");
                     }
 
-                    con.closeCon();
                 }
+
+
                   break;
 
             case R.id.clickRegist:
