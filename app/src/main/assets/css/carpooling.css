@@ -8,6 +8,19 @@ html, body, #mapid {
     width: 100vw;
 }
 
+.btnWp {
+        -webkit-border-radius: 10;
+        -moz-border-radius: 10;
+        border-radius: 5px;
+        font-family: Arial;
+        color: #5e4b5e;
+        font-size: 20px;
+        background: whitesmoke;
+      /*  padding: 29px 35px 30px 35px;*/
+        margin: 10px;
+        text-decoration: none;
+}
+
 .leaflet-control-container .leaflet-routing-container-hide {
     /*display: none;*/
 }
