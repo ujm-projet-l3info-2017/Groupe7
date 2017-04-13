@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
     tools:context="carpooling.MapActivity">
 
     <include
-        layout="@layout/content_map"
-        android:id="@+id/include"/>
+        android:id="@+id/include"
+        layout="@layout/content_map"/>
 
     <WebView
         android:id="@+id/map_view"
