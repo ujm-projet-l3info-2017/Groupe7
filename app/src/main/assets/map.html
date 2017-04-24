@@ -1,0 +1,99 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/leaflet.css"/>
+    <link rel="stylesheet" href="css/leaflet-routing-machine.css"/>
+    <link rel="stylesheet" href="css/carpooling.css"/>
+</head>
+<body>
+
+<div id="mapid"></div>
+<script src="script/leaflet.js"></script>
+<script src="script/leaflet-routing-machine.js"></script>
+<script src="script/Control.Geocoder.js"></script>
+<script src="script/carpooling.js"></script>
+
+<script>
+var myMap = L.map('mapid', { scrollWheelZoom: false });
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoia2hhbWVkcyIsImEiOiJjajB0Y3lwcDYwMDFtMndtZHMxMDY5aWVvIn0.hYqFxgXB5Lj-tX0IOF43PQ', 
+	{ 	maxZoom: 18, attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' 
+		+ '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' 
+		+ 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		id: 'mapbox.streets'
+	}).addTo(myMap);
+	
+myMap.locate({setView: true, maxZoom: 18});
+myMap.on('locationfound', onLocationFound);
+myMap.on('locationerror', onLocationError);
+
+var control = L.Routing.control({
+			routeWhileDragging: true,
+			language: 'fr',
+			plan: new (L.Routing.Plan.extend({createGeocoders: function() {
+				var container = L.Routing.Plan.prototype.createGeocoders.call(this),
+				reverseButton = createButton('&#8593;&#8595;', container);	
+				L.DomEvent.on(reverseButton, 'click', function() {var waypoints = this.getWaypoints(); this.setWaypoints(waypoints.reverse()); }, this);
+				return container;}}))
+				([], { geocoder: L.Control.Geocoder.nominatim(), language: 'fr', routeWhileDragging: true })
+		})
+	.on('routingerror', function(e){
+		try { myMap.getCenter();}
+		catch (e) { myMap.fitBounds(L.latLngBounds(control.getWaypoints().map(function(wp) { return wp.latLng; })));}
+		handleError(e);
+	}).addTo(myMap);
+
+	myMap.on('click', onMapClick);
+
+(function() {
+	'use strict';
+	L.Routing.routeToGeoJson = function(route) {
+		var wpNames = [], wpCoordinates = [],
+		i, wp, latLng;
+
+		for (i = 0; i < route.waypoints.length; i++) {
+		    wp = route.waypoints[i];
+			latLng = L.latLng(wp.latLng);
+			wpNames.push(wp.name);
+			wpCoordinates.push([latLng.lng, latLng.lat]);
+		}
+
+		return {
+				type: 'FeatureCollection',
+				features: [ 
+					{
+						type: 'Feature',
+						properties: { id: 'waypoints', names: wpNames },
+						geometry: { type: 'MultiPoint', coordinates: wpCoordinates }
+					},
+					{
+						type: 'Feature',
+						properties: { id: 'line', },
+						geometry: L.Routing.routeToLineString(route)
+					}
+				]
+		};
+	};
+
+	L.Routing.routeToLineString = function(route) {
+		var lineCoordinates = [],
+		i, latLng;
+
+		for (i = 0; i < route.coordinates.length; i++) {
+			latLng = L.latLng(route.coordinates[i]);
+			lineCoordinates.push([latLng.lng, latLng.lat]);
+		}
+
+		return { type: 'LineString', coordinates: lineCoordinates };
+	};
+})();
+
+control.on('routesfound', function(e) { console.log(L.Routing.routeToGeoJson(e.routes[0]));
+
+});
+
+L.Routing.errorControl(control).addTo(myMap);
+
+</script>
+</body>
+</html>
