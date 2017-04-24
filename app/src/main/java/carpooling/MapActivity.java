@@ -1,10 +1,9 @@
 package carpooling;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.webkit.GeolocationPermissions;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -18,24 +17,20 @@ public class MapActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        WebView myWebView = (WebView) findViewById(R.id.map_view);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener()
+        myWebView.setWebChromeClient(new WebChromeClient()
         {
-            @Override
-            public void onClick(View view)
+            public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback)
             {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                callback.invoke(origin, true, false);
             }
         });
 
-
-        WebView myWebView = (WebView) findViewById(R.id.map_view);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setGeolocationEnabled(true);
+
         myWebView.loadUrl("file:///android_asset/map.html");
 
     }
