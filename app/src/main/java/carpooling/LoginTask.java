@@ -25,7 +25,7 @@ public class LoginTask extends AsyncTask<String, Void, Boolean>
         res = con.receive();
         con.closeCon();
 
-        if (res.length != 2)
+        if (res == null || res.length != 2)
             return false;
         if (Integer.parseInt(res[1]) == 1)
             return true;

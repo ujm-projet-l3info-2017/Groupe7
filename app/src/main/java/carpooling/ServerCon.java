@@ -48,6 +48,7 @@ public class ServerCon
         String toSend = null;
 
         toSend = TextUtils.join(SEP_MARKER, data);
+        Log.d("send", "Sending '" + toSend + "' ...");
         toSend += END_MARKER;
         out.printf("%s", toSend);
     }
@@ -59,7 +60,7 @@ public class ServerCon
         try
         {
             data = in.readLine();
-            if (data.isEmpty())
+            if (data == null || data.isEmpty())
                 return null;
             return data.split(":");
         }

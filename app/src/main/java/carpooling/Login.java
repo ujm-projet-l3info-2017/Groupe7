@@ -15,7 +15,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
 {
     Button bLogin, clickregist;
     EditText etUsername, etPassword;
-    private boolean loggedIn;
+    private boolean loggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
