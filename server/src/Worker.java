@@ -5,6 +5,7 @@
 import java.net.*;
 import java.io.*;
 import java.sql.*;
+import java.util.regex.*;
 
 public class Worker implements Runnable
 {
@@ -109,10 +110,20 @@ public class Worker implements Runnable
         out.printf("%s", toSend);
     }
 
+    private boolean isValidReq(String req)
+    {
+        Pattern p = Pattern.compile("::+");
+        Matcher m = p.matcher(req);
+
+        return !m.find();
+    }
+
+
     public void run()
     {
         Args args = null;
         String type;
+        String rawData;
 
         dbg.info("Incoming connection from '" + sock.getRemoteSocketAddress() + "'");
 
@@ -141,7 +152,16 @@ public class Worker implements Runnable
 
         dbg.info("Received query from '" + sock.getRemoteSocketAddress() + "': " + args);
 
-            /* request type */
+        rawData = args.getRawData();
+
+        if (!isValidReq(rawData))
+        {
+            dbg.warning("Possible injection from '" + sock.getRemoteSocketAddress() +  "' ! Dropping request '" + rawData + "'");
+            closeCon();
+            return;
+        }
+
+        /* request type */
         type = args.get(0);
 
         if (type.equals(TYPE_AUTH))

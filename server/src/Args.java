@@ -11,6 +11,7 @@ public class Args
     private String[] args;
     private Debug dbg;
     private int size;
+    private String rawData;
 
     Args(BufferedReader in, String separator)
     {
@@ -28,6 +29,7 @@ public class Args
             line = in.readLine();
             if (line == null)
                 return null;
+            rawData = line;
             args = line.split(separator);
             for (size = 0; size < this.args.length && args[size] != null; size++);
 
@@ -45,6 +47,11 @@ public class Args
         if (i < size)
             return args[i];
         return null;
+    }
+
+    public String getRawData()
+    {
+        return rawData;
     }
 
     public int size()
