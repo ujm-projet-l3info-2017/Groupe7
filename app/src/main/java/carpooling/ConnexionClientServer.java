@@ -15,8 +15,9 @@ import java.net.Socket;
 public class ConnexionClientServer
 {
     private final int connection_time_out = 5000;
-    private final String host_ip = "89.90.8.243";
-    private final int port_num = 1337;
+    //private final String host_ip = "89.90.8.243";
+    private final String host_ip = "127.0.0.1";
+    private final int port_num = 1839;
 
     private Thread m_objectThreadClient;
 

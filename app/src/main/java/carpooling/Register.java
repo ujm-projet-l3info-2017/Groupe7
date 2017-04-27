@@ -13,7 +13,6 @@ import com.example.smail.testapp.R;
 public class Register extends AppCompatActivity implements View.OnClickListener {
     Button bRegister;
     EditText etUsername, etMail, etPassword, etTelephone;
-    private Debug dbg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
