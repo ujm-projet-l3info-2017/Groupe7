@@ -63,6 +63,7 @@ public class Worker implements Runnable
     {
         try
         {
+            dbg.info("Processing AUTH request for user '" + pseudo + "' from '" + sock.getRemoteSocketAddress() + "' ...");
             PreparedStatement prepStmt = db.getCon()
                     .prepareStatement("SELECT COUNT(*) AS c FROM Utilisateur" +
                             " WHERE pseudo = ? AND hash = ?");
@@ -87,7 +88,7 @@ public class Worker implements Runnable
     {
         try
         {
-            dbg.warning("Closing streams & connection to " + sock.getRemoteSocketAddress());
+            dbg.warning("Closing streams & connection to '" + sock.getRemoteSocketAddress() + "'");
             sock.close();
             out.close();
             in.close();
@@ -103,6 +104,7 @@ public class Worker implements Runnable
         String toSend = null;
 
         toSend = String.join(SEP_MARKER, data);
+        dbg.info("Sending response to '" + sock.getRemoteSocketAddress() + "' : '" + toSend + "' ...");
         toSend += END_MARKER;
         out.printf("%s", toSend);
     }
