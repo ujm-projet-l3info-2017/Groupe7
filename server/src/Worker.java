@@ -112,10 +112,10 @@ public class Worker implements Runnable
 
     private boolean isValidReq(String req)
     {
-        Pattern p = Pattern.compile("::+");
+        Pattern p = Pattern.compile("[^:]+|([^:]+:[^:]+)+");
         Matcher m = p.matcher(req);
 
-        return !m.find();
+        return m.matches();
     }
 
 
