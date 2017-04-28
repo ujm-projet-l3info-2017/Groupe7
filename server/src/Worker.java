@@ -23,8 +23,11 @@ public class Worker implements Runnable
     private static final String TYPE_REGISTER = "REGISTER";
     private static final String TYPE_UNKNOWN = "TYPE_UNKNOWN";
 
+    private Pattern reqPattern;
+
     public Worker(Socket sock)
     {
+        this.reqPattern = Pattern.compile("^[^:]+(:[^:]+)+$");
         this.sock = sock;
         db = new DbCon();
         dbg = new Debug("WORKER");
@@ -32,8 +35,8 @@ public class Worker implements Runnable
 
     public void reqRegister(String pseudo, String hash, String mail, String tel)
     {
-        String mailRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         String pseudoRegex = "^[a-zA-Z][^:]*$";
+        String mailRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         String telRegex = "^0[0-9]{9}$";
 
         /* always check input */
@@ -114,10 +117,7 @@ public class Worker implements Runnable
 
     private boolean isValidReq(String req)
     {
-        Pattern p = Pattern.compile("[^:]+|([^:]+:[^:]+)+");
-        Matcher m = p.matcher(req);
-
-        return m.matches();
+         return reqPattern.matcher(req).matches();
     }
 
 
