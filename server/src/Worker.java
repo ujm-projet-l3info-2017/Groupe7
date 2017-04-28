@@ -54,6 +54,7 @@ public class Worker implements Runnable
             prepStmt.setString(2, hash);
             prepStmt.setString(3, mail);
             prepStmt.setString(4, tel);
+            prepStmt.executeUpdate();
         }
         catch (SQLException se)
         {
@@ -96,12 +97,13 @@ public class Worker implements Runnable
         {
             dbg.warning("Closing streams & connection to '" + sock.getRemoteSocketAddress() + "'");
             sock.close();
-            out.close();
+            db.getCon().close();
             in.close();
+            out.close();
         }
-        catch(IOException ioe)
+        catch(Exception e)
         {
-            ioe.printStackTrace(System.err);
+            e.printStackTrace(System.err);
         }
     }
 
