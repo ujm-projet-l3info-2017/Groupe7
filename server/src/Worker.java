@@ -1,3 +1,8 @@
+import java.io.*;
+import java.net.Socket;
+import java.sql.*;
+import java.util.regex.*;
+
 /**
  * Created by yassine on 3/17/17.
  */
@@ -28,9 +33,11 @@ public class Worker implements Runnable
     public void reqRegister(String pseudo, String hash, String mail, String tel)
     {
         String mailRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        String pseudoRegex = "^[a-zA-Z][^:]*$";
+        String telRegex = "^0[0-9]{9}$";
 
         /* always check input */
-        if (pseudo.length() > 32 || hash.length() != 64 || tel.length() != 10 || !mail.matches(mailRegex))
+        if (pseudo.length() >= 32 || !pseudo.matches(pseudoRegex) || hash.length() != 64 || !tel.matches(telRegex) || !mail.matches(mailRegex))
         {
             send(new String[] {"REGISTER", "0"});
             return;
