@@ -21,8 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="carpooling.Login"/>
-        <activity android:name="carpooling.Register"/>
+        <activity android:name="carpooling.LoginActivity"/>
+        <activity android:name="carpooling.RegisterActivity"/>
         <activity
             android:name="carpooling.MapActivity"
             android:label="@string/title_activity_map"

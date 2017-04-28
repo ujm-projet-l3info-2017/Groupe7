@@ -36,11 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId())
         {
             case R.id.bLoginBegin:
-                startActivity(new Intent(this, Login.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
 
             case R.id.bRegisterBegin:
-                startActivity(new Intent(this, Register.class));
+                startActivity(new Intent(this, RegisterActivity.class));
                 break;
 
             case R.id.bMap:

@@ -10,7 +10,7 @@ import android.widget.EditText;
 
 import com.example.smail.testapp.R;
 
-public class Register extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     Button bRegister;
     EditText etUsername, etMail, etPassword, etTelephone;
 
@@ -77,7 +77,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                         }
                         switch (Integer.parseInt(response[1])) {
                             case 0:
-                                etUsername.setError("Erreur Register");
+                                etUsername.setError("Erreur RegisterActivity");
                                 break;
                             case 1:
                                 startActivity(new Intent(this, MapActivity.class));

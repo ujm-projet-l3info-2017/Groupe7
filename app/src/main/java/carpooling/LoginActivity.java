@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.example.smail.testapp.R;
 
-public class Login extends AppCompatActivity implements View.OnClickListener
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener
 {
     Button bLogin, clickregist;
     EditText etUsername, etPassword;
@@ -64,7 +64,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.clickRegist:
-                startActivity(new Intent(this, Register.class));
+                startActivity(new Intent(this, RegisterActivity.class));
                 break;
         }
     }
