@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 catch(Exception e)
                 {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "The following error happened : " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "An unknown error happened !", Toast.LENGTH_LONG).show();
                 }
                 break;
 

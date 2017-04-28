@@ -1,12 +1,12 @@
 package carpooling;
 
 /**
- * Created by yassine on 4/25/17.
+ * Created by yassine on 4/28/17.
  */
 
 import android.os.AsyncTask;
 
-public class LoginTask extends AsyncTask<String, Void, Boolean>
+public class RegisterTask extends AsyncTask<String, Void, Boolean>
 {
     /* TODO: sha256 -> bcrypt() */
     @Override
@@ -14,18 +14,20 @@ public class LoginTask extends AsyncTask<String, Void, Boolean>
     {
         String pseudo = params[0];
         String passwd = params[1];
+        String mail = params[2];
+        String tel = params[3];
         String hash;
         ServerCon con;
         String[] res;
 
-        if (pseudo.trim().isEmpty() || passwd.trim().isEmpty())
+        if (pseudo.trim().isEmpty() || passwd.trim().isEmpty() || mail.trim().isEmpty() || tel.trim().isEmpty())
             return false;
         if (pseudo.length() >= 32)
             return false;
 
         hash = Common.hashString(passwd, "SHA-256");
         con = new ServerCon();
-        con.send(new String[]{ServerCon.TYPE_AUTH, pseudo, hash});
+        con.send(new String[]{ServerCon.TYPE_REGISTER, pseudo, hash, mail, tel});
         res = con.receive();
         con.closeCon();
 
