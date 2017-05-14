@@ -2,6 +2,7 @@ package carpooling;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.webkit.GeolocationPermissions;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -18,6 +19,7 @@ public class MapActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         WebView myWebView = (WebView) findViewById(R.id.map_view);
+        Log.d("d_Nature", " Nature =  " +Navigation.Nature +"");
 
         myWebView.setWebChromeClient(new WebChromeClient()
         {

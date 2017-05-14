@@ -1,5 +1,6 @@
 package carpooling;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -54,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     {
                         Toast.makeText(getApplicationContext(), "Registration successful !", Toast.LENGTH_LONG).show();
                         /* TODO: redirect to proper activity */
+                        startActivity(new Intent(this, Navigation.class));
                     }
                     else
                     {

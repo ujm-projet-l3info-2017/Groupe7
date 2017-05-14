@@ -14,19 +14,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="carpooling.MainActivity">
+        <activity android:name="carpooling.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="carpooling.LoginActivity"/>
         <activity android:name="carpooling.RegisterActivity"/>
         <activity
             android:name="carpooling.MapActivity"
             android:label="@string/title_activity_map"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="carpooling.Navigation"
+            android:label="@string/title_activity_navigation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

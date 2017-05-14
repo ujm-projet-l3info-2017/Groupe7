@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         bLogin = (Button) findViewById(R.id.bclickLogin);
         clickregist = (Button) findViewById(R.id.clickRegist);
 
+
+
         bLogin.setOnClickListener(this);
         clickregist.setOnClickListener(this);
     }
@@ -50,6 +52,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     {
                         Toast.makeText(getApplicationContext(), "Successfully logged in !", Toast.LENGTH_LONG).show();
                         /* TODO: redirect to proper activity */
+                        startActivity(new Intent(this, Navigation.class));
+
                     }
                     else
                     {
@@ -66,6 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.clickRegist:
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
+
         }
     }
 }
