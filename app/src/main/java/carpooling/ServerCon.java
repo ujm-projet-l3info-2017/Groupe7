@@ -13,7 +13,7 @@ public class ServerCon
 {
     public static final String TYPE_AUTH = "AUTH";
     public static final String TYPE_REGISTER = "REGISTER";
-    public static final String TYPE_SAVE_WP = "WAYPOINTS";
+    public static final String TYPE_SAVE_WP = "MATCH";
     public static final String TYPE_VALIDATE_MATCH = "VALIDATE";
 
     /* "To access your PC localhost from Android emulator, use 10.0.2.2 instead of 127.0.0.1.
@@ -21,8 +21,8 @@ public class ServerCon
         => http://stackoverflow.com/questions/18341652/connect-failed-econnrefused
         sounds obvious after all ...
     */
-    // private static final String ip = "10.0.2.2";
-    private static final String ip = "89.90.8.243";
+    private static final String ip = "10.0.2.2";
+    //private static final String ip = "89.90.8.243";
     private static final int port = 1839;
     private static final String SEP_MARKER = ":";
     private static final String END_MARKER = "\n";

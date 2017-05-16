@@ -5,9 +5,11 @@ import java.util.ArrayList;
 
 public class Itinerary
 {
-    public static boolean sendItininerariesToServer(ArrayList liste)
+    public static boolean sendItininerariesToServer(String user, int userType, ArrayList liste)
     {
         liste.add(0, ServerCon.TYPE_SAVE_WP);
+        liste.add(1, user);
+        liste.add(2, userType);
         //TODO add user identification
 
         String[] data = new String[liste.size()];
@@ -28,20 +30,14 @@ public class Itinerary
         return true;
     }
 
-    public static boolean validateMatchBetweenUsers()
+    public static String validateMatchBetweenUsers(String user, String matchedUser)
     {
-
         ServerCon con = new ServerCon();
-        con.send(new String[]{ServerCon.TYPE_VALIDATE_MATCH});
+        con.send(new String[]{ServerCon.TYPE_VALIDATE_MATCH, user, matchedUser});
         String[] res = con.receive();
         con.closeCon();
 
-        if (res == null || res.length != 1)
-            return false;
-        if (Integer.parseInt(res[1]) == 1)
-            return true;
-
-        return false;
+        return res[1];
     }
 
 
