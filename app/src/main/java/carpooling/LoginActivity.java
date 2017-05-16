@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.smail.testapp.R;
 
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener
 {
     Button bLogin, clickregist;
@@ -51,8 +52,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     if (this.loggedIn)
                     {
                         Toast.makeText(getApplicationContext(), "Successfully logged in !", Toast.LENGTH_LONG).show();
-                        /* TODO: redirect to proper activity */
-                        startActivity(new Intent(this, Navigation.class));
+
+                        Intent intent = new Intent(this, Navigation.class);
+                        intent.putExtra("USER_ID", pseudo);
+                        startActivity(intent);
 
                     }
                     else
@@ -62,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 catch(Exception e)
                 {
+
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "An unknown error happened !", Toast.LENGTH_LONG).show();
                 }

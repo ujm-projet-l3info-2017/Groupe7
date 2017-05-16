@@ -12,6 +12,8 @@ import com.example.smail.testapp.R;
 public class Navigation  extends AppCompatActivity implements View.OnClickListener {
     public static int Nature;
     Button etConducteur, etVoyageur;
+    public final int IS_PASSENGER = 0;
+    public final int IS_DRIVER = 1;
 
     // Nature = 1 --> Conducteur , Nature = 0 --> Voyageur
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +27,6 @@ public class Navigation  extends AppCompatActivity implements View.OnClickListen
 
         etConducteur.setOnClickListener(this);
         etVoyageur.setOnClickListener(this);
-
-
     }
 
 
@@ -34,11 +34,11 @@ public class Navigation  extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bConducteur:
-                Nature = 1;
-
                 try {
-                    startActivity(new Intent(this, MapActivity.class));
-
+                    Intent intent = new Intent(getBaseContext(), MapActivity.class);
+                    intent.putExtra("USER_TYPE", IS_DRIVER);
+                    intent.putExtra("USER_ID", getIntent().getStringExtra("USER_ID"));
+                    startActivity(intent);
                 }
                 catch (Exception e) {
                     e.printStackTrace();
@@ -46,10 +46,11 @@ public class Navigation  extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case R.id.bVoyageur:
-               Nature = 0;
-
                 try {
-                    startActivity(new Intent(this, MapActivity.class));
+                    Intent intent = new Intent(getBaseContext(), MapActivity.class);
+                    intent.putExtra("USER_TYPE", IS_PASSENGER);
+                    intent.putExtra("USER_ID", getIntent().getStringExtra("USER_ID"));
+                    startActivity(intent);
                 }
                 catch (Exception e) {
                     e.printStackTrace();
