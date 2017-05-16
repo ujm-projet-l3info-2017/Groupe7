@@ -1,7 +1,11 @@
 import java.io.*;
 import java.net.Socket;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.regex.*;
+import java.util.*;
 
 /**
  * Created by yassine on 3/17/17.
@@ -10,7 +14,7 @@ import java.util.regex.*;
 public class Worker implements Runnable
 {
     private Socket sock;
-    private DbCon db;
+    protected static DbCon db;
     private BufferedReader in = null;
     private PrintWriter out = null;
     private Debug dbg;
@@ -91,6 +95,48 @@ public class Worker implements Runnable
         }
     }
 
+    public void reqMatch(String pseudo, String type, ArrayList<Coordinate> coordinates)
+    {
+        if (type != PathMatching.TYPE_DRIVER && type != PathMatching.TYPE_PASSENGER)
+            return;
+
+        String coordinatesStr = Coordinate.coordinates2str(coordinates);
+
+        try
+        {
+            int pathId = 0;
+            PreparedStatement prepStmt = db.getCon().prepareStatement("SELECT COUNT(*) AS c FROM Itineraire");
+            ResultSet res = prepStmt.executeQuery();
+            res.next();
+            pathId = res.getInt("c");
+
+            PreparedStatement prepStmt1 = db.getCon()
+                    .prepareStatement("INSERT INTO Itineraire VALUES(?, ?, ?)");
+            prepStmt1.setInt(1, pathId);
+            prepStmt1.setString(2, coordinatesStr);
+            prepStmt1.setString(3, type);
+            prepStmt1.executeUpdate();
+
+
+            Timestamp timestamp = new java.sql.Timestamp(System.currentTimeMillis());
+            PreparedStatement prepStmt2 = db.getCon()
+                    .prepareStatement("INSERT INTO Effectuer_itineraire VALUES(?, ?, ?)");
+            prepStmt2.setString(1, pseudo);
+            prepStmt2.setInt(2, pathId);
+            prepStmt2.setTimestamp(3, timestamp);
+            prepStmt2.executeUpdate();
+
+            if (type == PathMatching.TYPE_PASSENGER)
+                PathMatching.matchPassenger(pseudo, coordinates);
+            else
+                PathMatching.matchDriver(pseudo, coordinates);
+        }
+        catch (SQLException se)
+        {
+            dbg.error("SQLException caught: '" + se.getMessage() + "'");
+        }
+    }
+
     private void closeCon()
     {
         try
@@ -119,7 +165,7 @@ public class Worker implements Runnable
 
     private boolean isValidReq(String req)
     {
-         return reqPattern.matcher(req).matches();
+        return reqPattern.matcher(req).matches();
     }
 
 
