@@ -1,6 +1,40 @@
+load("nashorn:mozilla_compat.js");
+
 var b_addWp;
 var b_addStartWp;
 var currentLocation;
+var userName;
+var userType;
+
+
+importClass(carpooling.Itinerary);
+
+    function validateMatching(matchedUser)
+    {
+        var obj = Java.type("carpooling.Itinerary");
+        var res = obj.validateMatchBetweenUsers(userName, matchedUser);
+
+    }
+
+    function sendWaypoints()
+    {
+        var obj = Java.type("carpooling.Itinerary");
+
+        var res = obj.sendItininerariesToServer(userName, userType, control.getWaypoints());
+        if(res.length >= 5)
+        {
+            if (confirm("Un itinéraire compatible a été trouvé avec " + res[0] + ", souhaitez vous l'accepter ?"))
+            {
+                control.setWaypoints(res[3]);
+                validateMatching(res[0]);
+            }
+        }
+        else
+        {
+            alert("Désolé aucun itinéraire corespondant n'a été trouvé.");
+        }
+
+    }
 
     function onMapClick(e)
     {

@@ -27,13 +27,16 @@ myMap.locate({setView: true, maxZoom: 18});
 myMap.on('locationfound', onLocationFound);
 myMap.on('locationerror', onLocationError);
 
+
 var control = L.Routing.control({
 			routeWhileDragging: true,
 			language: 'fr',
 			plan: new (L.Routing.Plan.extend({createGeocoders: function() {
 				var container = L.Routing.Plan.prototype.createGeocoders.call(this),
-				reverseButton = createButton('&#8593;&#8595;', container);	
+				reverseButton = createButton('&#8593;&#8595;', container);
+				validateButton = createButton('Go', container);
 				L.DomEvent.on(reverseButton, 'click', function() {var waypoints = this.getWaypoints(); this.setWaypoints(waypoints.reverse()); }, this);
+				L.DomEvent.on(validateButton, 'click', sendWaypoints, this);
 				return container;}}))
 				([], { geocoder: L.Control.Geocoder.nominatim(), language: 'fr', routeWhileDragging: true })
 		})
