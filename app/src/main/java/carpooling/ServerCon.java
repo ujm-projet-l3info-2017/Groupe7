@@ -13,6 +13,8 @@ public class ServerCon
 {
     public static final String TYPE_AUTH = "AUTH";
     public static final String TYPE_REGISTER = "REGISTER";
+    public static final String TYPE_SAVE_WP = "WAYPOINTS";
+    public static final String TYPE_VALIDATE_MATCH = "VALIDATE";
 
     /* "To access your PC localhost from Android emulator, use 10.0.2.2 instead of 127.0.0.1.
         localhost or 127.0.0.1 refers to the emulated device itself, not the host the emulator is running on."
