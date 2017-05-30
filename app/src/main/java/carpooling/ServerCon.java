@@ -21,8 +21,8 @@ public class ServerCon
         => http://stackoverflow.com/questions/18341652/connect-failed-econnrefused
         sounds obvious after all ...
     */
-    private static final String ip = "10.0.2.2";
-    //private static final String ip = "89.90.8.243";
+    //private static final String ip = "10.0.2.2";
+    private static final String ip = "89.90.8.243";
     private static final int port = 1839;
     private static final String SEP_MARKER = ":";
     private static final String END_MARKER = "\n";
